@@ -21,12 +21,16 @@ class Kernel
 
         $router = new Router();
         $route = $router->match($path);
-        var_dump($route);
+        
         $controllerFragments = explode('::', $route->getController());
         $controllerClass = $controllerFragments[0];
         $controllerMethod = $controllerFragments[1];
-
+        
         $controller = new $controllerClass();
-        $controller->$controllerMethod();
+        
+        // ✅ Pass extracted parameters from $route->getParams()
+        call_user_func_array([$controller, $controllerMethod], $route->params // ✅ Correct: it's a property
+    );
+        
     }
 }

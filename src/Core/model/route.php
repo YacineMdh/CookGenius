@@ -2,12 +2,13 @@
 
 namespace App\Core\Model;
 
-readonly class Route
+class Route
 {
     public function __construct(
         private string $name,
         private string $path,
         private string $controller,
+        public array $params = []
     ) {
     }
 

@@ -16,16 +16,38 @@ class Router
         $this->loadRoutes();
     }
 
-    public function match(string $path): ?Route
+    public function match(string $path)
     {
         foreach ($this->routes as $route) {
-            if ($path === $route->getPath()) {
-                return $route;
+            $routePath = $route->getPath(); // Get the route path, e.g., "/recette/detail/{id}"
+            
+            // Check if route contains placeholders (like {id})
+            if (strpos($routePath, '{') !== false) {
+                // Convert placeholders like "{id}" to a regex pattern that matches numbers
+                $pattern = preg_replace('/\{(\w+)\}/', '(\d+)', $routePath);
+                $pattern = "#^" . $pattern . "$#"; // Ensure full match
+    
+                if (preg_match($pattern, $path, $matches)) {
+                    array_shift($matches); // Remove the full match from $matches
+                    $route->params = $matches; // Store extracted parameters
+                    return $route; // Return the matched route
+                }
+            } else {
+             
+
+                // If no placeholders, check if the path exactly matches
+                if ($path === $routePath) {
+                    
+                    return $route; // Exact match for routes like "/recette/search"
+                }
             }
         }
-
-        return null;
+        
+        // If no route was matched, return null
+        return null; 
     }
+    
+
 
     private function loadRoutes(): void
     {
