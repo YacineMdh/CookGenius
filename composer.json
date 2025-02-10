@@ -1,0 +1,21 @@
+{
+    "name": "yoankpatchavi/movie-bucket-master",
+    "type": "project",
+    "authors": [
+        {
+            "name": "gsk42rvr",
+            "email": "kpatchavi@icloud.com"
+        }
+    ],
+    "require": {
+        "symfony/yaml": "^7.1",
+      "ext-pdo": "*",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "scripts": {
+        "run": "php -S localhost:8000 -t ./public"
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}

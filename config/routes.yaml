@@ -1,0 +1,31 @@
+main_home:
+  path: /
+  controller: App\Controller\MainController::home
+
+main_about:
+  path: /about
+  controller: App\Controller\MainController::about
+
+movie_list:
+  path: /movies
+  controller: App\Controller\MovieController::list
+
+movie_show:
+  path: /movie
+  controller: App\Controller\MovieController::show
+
+login:
+  path: /login
+  controller: App\Controller\AuthController::login
+
+register:
+  path: /register
+  controller: App\Controller\AuthController::register
+
+confirm:
+  path: /confirm/{token}
+  controller: App\Controller\AuthController::confirm
+
+forgot_password:
+  path: /forgot-password
+  controller: App\Controller\AuthController::forgotPassword
