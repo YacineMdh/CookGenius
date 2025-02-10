@@ -1,6 +1,22 @@
 main_home:
+
   path: /
-  controller: App\Controller\MainController::home
+  controller: App\Controller\HomeController::index
+
+  # routes.yaml
+
+# routes.yaml
+
+recherche:
+  path: /recette/recherche
+  controller: App\Controller\RecetteController::rechercheRecette
+
+detail_recette:
+  path: /recette/detail/{id}
+  controller: App\Controller\RecetteController::detailRecette
+
+
+
 
 main_about:
   path: /about
