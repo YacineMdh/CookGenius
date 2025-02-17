@@ -10,7 +10,7 @@ class User {
     private bool $isConfirmed;
     private ?string $resetToken;
 
-    public function __construct(string $email, string $password, int $id) {
+    public function __construct(string $email, string $password, ?int $id = null) {
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->confirmationToken = bin2hex(random_bytes(32));
