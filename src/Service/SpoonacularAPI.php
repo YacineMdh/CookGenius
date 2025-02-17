@@ -3,7 +3,7 @@
 namespace App\Service;
 
 class SpoonacularAPI {
-    private $apiKey = '0b7264343ed746f38b5faca171990c14 ';  // Your valid API key
+    private $apiKey = '0b7264343ed746f38b5faca171990c14';  // Your valid API key
     private function fetchData($url) {
         $ch = curl_init();
 
