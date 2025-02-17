@@ -196,6 +196,7 @@
 <body>
 <nav>
     <div class="nav-container">
+    <?php if (isset($_SESSION['user_id'])): ?>
         <div class="nav-left">
             <ul>
                 <li><a href="/" class="nav-link"><span>Home</span></a></li>
@@ -203,6 +204,7 @@
                 <li><a href="/favorite" class="nav-link"><span>Favoris</span></a></li>
             </ul>
         </div>
+        <?php endif; ?>
 
         <div class="nav-right">
             <ul>
