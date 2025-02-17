@@ -9,6 +9,7 @@ class AuthenticationService {
     private PDO $pdo;
 
     public function __construct() {
+     
         $this->pdo = new PDO(
             "pgsql:host=shopxdev.c4sqhgh3gh8j.us-east-1.rds.amazonaws.com;dbname=laravel_ecommerce",
             "laravel_ecom",
