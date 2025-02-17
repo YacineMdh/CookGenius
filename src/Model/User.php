@@ -15,7 +15,9 @@ class User {
         $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->confirmationToken = bin2hex(random_bytes(32));
         $this->isConfirmed = false;
-        $this->id = $id;
+        if ($id) {
+            $this->id = $id;
+        }
     }
 
     public function getId(): int
