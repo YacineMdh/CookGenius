@@ -34,6 +34,10 @@ login:
   path: /login
   controller: App\Controller\AuthController::login
 
+logout:
+  path: /logout
+  controller: App\Controller\AuthController::logout
+
 register:
   path: /register
   controller: App\Controller\AuthController::register
@@ -45,3 +49,26 @@ confirm:
 forgot_password:
   path: /forgot-password
   controller: App\Controller\AuthController::forgotPassword
+
+favorite-list:
+  path: /favorite
+  controller: App\Controller\FavoriteController::showFavorites
+
+toggle-favorite:
+  path: /recipe/toggle-favorite
+  controller: App\Controller\FavoriteController::toggleFavorite
+
+recipe_rate:
+  path: /recipe/rate
+  controller: App\Controller\RatingController::submitRating
+  methods: [POST]
+
+recipe_delete_rating:
+  path: /recipe/rating/delete
+  controller: App\Controller\RatingController::deleteRating
+  methods: [POST]
+
+recipe_ratings:
+  path: /recipe/{id}/ratings
+  controller: App\Controller\RatingController::getRatings
+  methods: [GET]

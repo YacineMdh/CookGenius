@@ -40,7 +40,8 @@ class AuthenticationService {
         if ($user = $stmt->fetch()) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
-                return new User($user['email'], $user['password']);
+                error_log("Debug: " . print_r($_SESSION['user_id'] , true));
+                return new User($user['email'], $user['password'],$user['id']);
             }
         }
         return null;

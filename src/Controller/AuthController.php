@@ -13,6 +13,9 @@ class AuthController {
     private ViewManager $viewManager;
 
     public function __construct() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $this->authService = new AuthenticationService();
         $this->viewManager = new ViewManager();
     }
@@ -23,9 +26,11 @@ class AuthController {
                 $_POST['email'],
                 $_POST['password']
             );
-
+            //error_log("Debug: " . print_r($user, true));
             if ($user) {
-                header('Location: /dashboard');
+                $_SESSION['user_id'] = $user->getId();
+                error_log("id: " . print_r($user->getId(), true));
+                header('Location: /');
                 exit;
             }
         }
@@ -65,5 +70,11 @@ class AuthController {
         }
 
         $this->viewManager->render('auth/forgot');
+    }
+
+    public function logout(): void {
+        session_destroy();
+        header('Location: /login');
+        exit;
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Model;
+namespace App\Service;
 
 class SpoonacularAPI {
-    private $apiKey = 'c6120d2f1d024f2d9e18374461fcdfb5';  // Your valid API key
+    private $apiKey = '0cbb5c8f23de430da1c2f80c9784fa26';  // Your valid API key
     private function fetchData($url) {
         $ch = curl_init();
 

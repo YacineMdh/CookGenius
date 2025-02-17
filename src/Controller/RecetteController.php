@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Core\Model\SpoonacularAPI;
 use App\Core\Service\ViewManager;
+use App\Service\SpoonacularAPI;
 
 class RecetteController {
 

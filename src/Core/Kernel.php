@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Router;
+use App\Middleware\AuthenticationMiddleware;
 
 
 class Kernel
@@ -19,8 +20,12 @@ class Kernel
     {
         $path = $_SERVER['PATH_INFO'] ?? '/';
 
+        $authMiddleware = new AuthenticationMiddleware();
+        $authMiddleware->handle();
+
         $router = new Router();
         $route = $router->match($path);
+        error_log("route: " . print_r($path, true));
         
         $controllerFragments = explode('::', $route->getController());
         $controllerClass = $controllerFragments[0];

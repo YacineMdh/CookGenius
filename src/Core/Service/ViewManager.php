@@ -15,26 +15,40 @@ class ViewManager
         $this->config = $configurationProvider->load(self::CONFIG_FILE);
     }
 
-    /**
-     * Render the view template with data.
-     *
-     * @param string $viewPath The path to the view file (without .php extension)
-     * @param array $data Associative array of variables to pass to the view
-     */
-    public function render(string $viewPath, array $data = []): void
+    public function render(string $viewPath, array $params = []): void
     {
-        // Construct the full path to the view file
-        $path = sprintf('%s/%s.php', $this->config['directory'], $viewPath);
+        error_log("base: " . print_r(
+                sprintf('%s/base.php', $this->config['directory'])
+                , true));
+        // Extract parameters to make them available in the view
+        extract($params);
 
-        // Check if the view file exists
-        if (!file_exists($path)) {
+        // Start output buffering
+        ob_start();
+
+        $viewFile = sprintf('%s/%s.php', $this->config['directory'], $viewPath);
+
+        if (!file_exists($viewFile)) {
             throw new LogicException(sprintf('View "%s" does not exist', $viewPath));
         }
 
-        // Extract the data array to individual variables
-        extract($data);
+        // Include the view file - its output will be buffered
+        require $viewFile;
 
-        // Include the view file
-        require $path;
+        // Get the content and clean the buffer
+        $content = ob_get_clean();
+
+        // Get the base layout path
+        error_log("base: " . print_r(
+            sprintf('%s/base.php', $this->config['directory'])
+            , true));
+        $layoutFile = sprintf('%s/base.php', $this->config['directory']);
+
+        if (!file_exists($layoutFile)) {
+            throw new LogicException('Base layout does not exist');
+        }
+
+        // Include the base layout which will use $content
+        require $layoutFile;
     }
 }
