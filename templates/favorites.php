@@ -27,7 +27,7 @@
                             <a href="/recipe/<?= $recipe['id']; ?>" class="btn btn-primary">View Recipe</a>
                             <form action="/recipe/toggle-favorite" method="POST" class="favorite-form">
                                 <input type="hidden" name="recipe_id" value="<?= $recipe['id']; ?>">
-                                <button type="submit" class="favorite-btn is-favorite">❤️ Remove</button>
+                                <button type="submit" class="favorite-btn remove-btn">Remove</button>
                             </form>
                         </div>
                     </div>

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/CookGeniusLogo.png">
     <title>Recipe Finder</title>
     <style>
-        /* Reset et variables */
+        /* 🎨 Variables globales avec la nouvelle palette */
         :root {
-            --primary-color: #4299e1;
-            --accent-color: #48bb78;
-            --danger-color: #f56565;
-            --text-color: #2d3748;
-            --bg-color: #f7fafc;
+            --primary-color: #A67C52; /* Marron clair */
+            --accent-color: #D2691E; /* Orange doux */
+            --bg-color: #F5E1DA; /* Beige */
+            --text-color: #5C3B1E; /* Marron foncé */
+            --white: #FFFFFF;
             --nav-height: 4rem;
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -51,12 +51,24 @@
             align-items: center;
         }
 
-        .nav-left ul,
-        .nav-right ul {
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Espacement entre le logo et les liens */
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        .nav-links {
             list-style: none;
             display: flex;
             gap: 1.5rem;
             align-items: center;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-link {
@@ -104,6 +116,30 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.2s;
+        }
+        .favorite-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+        .remove-btn {
+            background: var(--danger-color);
+            color: white;
+            border: 2px solid var(--danger-color);
+        }
+
+        .remove-btn:hover {
+            background: #c53030; /* Rouge plus foncé au survol */
+            border-color: #c53030;
+        }
+
+        .remove-btn:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(229, 62, 62, 0.6); /* Effet lumineux au focus */
         }
 
         .btn-primary {
@@ -162,8 +198,11 @@
                 padding: 0 0.5rem;
             }
 
-            .nav-left ul,
-            .nav-right ul {
+            .nav-left {
+                gap: 1rem;
+            }
+
+            .nav-links {
                 gap: 1rem;
             }
 
@@ -196,27 +235,30 @@
 <body>
 <nav>
     <div class="nav-container">
-    <?php if (isset($_SESSION['user_id'])): ?>
         <div class="nav-left">
-            <ul>
+            <a href="/" class="logo">
+                <img src="/images/CookGeniusLogo.png" alt="CookGenius Logo">
+            </a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+            <ul class="nav-links">
                 <li><a href="/" class="nav-link"><span>Home</span></a></li>
                 <li><a href="/recette/recherche" class="nav-link"><span>Recherche</span></a></li>
                 <li><a href="/favorite" class="nav-link"><span>Favoris</span></a></li>
             </ul>
+            <?php endif; ?>
         </div>
-        <?php endif; ?>
 
         <div class="nav-right">
             <ul>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="user-info">
-                            <span class="user-name">
-                                <?php
-                                echo htmlspecialchars($_SESSION['user_firstname'] ?? '', ENT_QUOTES, 'UTF-8');
-                                echo ' ';
-                                echo htmlspecialchars($_SESSION['user_lastname'] ?? '', ENT_QUOTES, 'UTF-8');
-                                ?>
-                            </span>
+                        <span class="user-name">
+                            <?php
+                            echo htmlspecialchars($_SESSION['user_firstname'] ?? '', ENT_QUOTES, 'UTF-8');
+                            echo ' ';
+                            echo htmlspecialchars($_SESSION['user_lastname'] ?? '', ENT_QUOTES, 'UTF-8');
+                            ?>
+                        </span>
                         <a href="/logout" class="btn btn-danger">Déconnexion</a>
                     </li>
                 <?php else: ?>
