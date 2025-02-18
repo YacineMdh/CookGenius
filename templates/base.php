@@ -244,6 +244,7 @@
                 <li><a href="/" class="nav-link"><span>Home</span></a></li>
                 <li><a href="/recette/recherche" class="nav-link"><span>Recherche</span></a></li>
                 <li><a href="/favorite" class="nav-link"><span>Favoris</span></a></li>
+                <li><a href="/health" class="nav-link"><span>Plan Santé</span></a></li>
             </ul>
             <?php endif; ?>
         </div>
@@ -265,6 +266,7 @@
                     <li class="auth-buttons">
                         <a href="/login" class="btn btn-outline">Connexion</a>
                         <a href="/register" class="btn btn-primary">Inscription</a>
+                        
                     </li>
                 <?php endif; ?>
             </ul>

@@ -29,7 +29,7 @@ class Router
     
                 if (preg_match($pattern, $path, $matches)) {
                     array_shift($matches); // Remove the full match from $matches
-                    $route->params = $matches; // Store extracted parameters
+                    $route->params = $matches; // Store extracted parametersgi
                     return $route; // Return the matched route
                 }
             } else {

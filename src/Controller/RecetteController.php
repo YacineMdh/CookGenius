@@ -48,5 +48,50 @@ class RecetteController {
             echo "Recipe not found for ID: $id. Please check the API logs for more details.";
         }
     }
+
+    public function genererPlanAlimentaire() {
+        $suggestions = [];
+        $totalCalories = $mealsCount = null;  // Initialize variables
+    
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Check if the POST variables are set
+            if (isset($_POST['calories']) && isset($_POST['meals'])) {
+                $totalCalories = $_POST['calories'];
+                $mealsCount = $_POST['meals'];
+    
+                // Validate that calories and meals count are positive values
+                if ($totalCalories > 0 && $mealsCount > 0) {
+                    $caloriesPerMeal = $totalCalories / $mealsCount;
+                    $minCalories = $caloriesPerMeal - 100;
+                    $maxCalories = $caloriesPerMeal + 100;
+    
+                    // Fetch available meals from the API
+                    $availableMeals = $this->api->rechercherRepasParCalories($minCalories, $maxCalories, 10); // Pass max number of recipes to fetch
+    
+                    // Check if there are enough meals and slice accordingly
+                    if (count($availableMeals) >= $mealsCount) {
+                        $suggestions = array_slice($availableMeals, 0, $mealsCount);
+                    } else {
+                      
+                        $suggestions = $availableMeals;
+                    }
+                } else {
+                    $errorMessage = "Calories and meals count must be greater than 0.";
+                }
+            } else {
+  
+                $errorMessage = "Please provide both total calories and number of meals.";
+            }
+        }
+    
+      
+        $this->viewManager->render('health', [
+            'suggestions' => $suggestions,
+            'calories' => $totalCalories,
+            'errorMessage' => $errorMessage ?? null 
+        ]);
+    }
+    
+    
     
 }

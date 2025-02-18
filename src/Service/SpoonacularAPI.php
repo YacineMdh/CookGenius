@@ -72,11 +72,17 @@ class SpoonacularAPI {
     }
     
     public function getMostCommonRecipes() {
-        // Example: Predefined list of popular recipes
         $popularIds = [715538, 716429, 782601, 715497, 715594]; 
         $ids = implode(',', $popularIds);
         $url = "https://api.spoonacular.com/recipes/informationBulk?ids=$ids&apiKey=" . $this->apiKey;;
         return $this->fetchData($url) ?? [];
     }
+
+    public function rechercherRepasParCalories($minCalories, $maxCalories) {
+        $url = "https://api.spoonacular.com/recipes/complexSearch?minCalories=$minCalories&maxCalories=$maxCalories&apiKey=" . $this->apiKey;
+        $response = file_get_contents($url);
+        return json_decode($response, true)['results'] ?? [];
+    }
+    
     
 }

@@ -16,6 +16,9 @@ detail_recette:
   controller: App\Controller\RecetteController::detailRecette
 
 
+health_plan:
+  path: /health
+  controller: App\Controller\RecetteController::genererPlanAlimentaire
 
 
 main_about:
