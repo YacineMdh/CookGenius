@@ -30,5 +30,15 @@ return [
     "meals_placeholder" => "ex : 3",
     "generate_plan" => "Générer le plan",
     "meal_suggestions" => "Suggestions de Plats",
-    "total_calories" => "Total Calories"
+    "total_calories" => "Total Calories",
+    "login" => "Connexion",
+    "email" => "Email",
+    "password" => "Mot de passe",
+    "login_button" => "Se connecter",
+    "forgot_password" => "Mot de passe oublié ?",
+    "register" => "S'inscrire",
+    "inscription" => "Inscription",
+    "confirm_password" => "Confirmer le mot de passe",
+    "password_reset" => "Réinitialisation du mot de passe",
+    "send_reset_link" => "Envoyer le lien de réinitialisation"
 ];

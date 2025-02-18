@@ -30,5 +30,15 @@ return [
     "meals_placeholder" => "e.g., 3",
     "generate_plan" => "Generate Plan",
     "meal_suggestions" => "Meal Suggestions",
-    "total_calories" => "Total Calories"
+    "total_calories" => "Total Calories",
+    "login" => "Login",
+    "email" => "Email",
+    "password" => "Password",
+    "login_button" => "Sign in",
+    "forgot_password" => "Forgot password?",
+    "register" => "Register",
+    "inscription" => "Sign up",
+    "confirm_password" => "Confirm password",
+    "password_reset" => "Password Reset",
+    "send_reset_link" => "Send Reset Link"
 ];

@@ -283,7 +283,7 @@ $ratingStats = [
         }
 
         .btn-primary:hover {
-            background: #3182ce;
+            background: #5C3B1E;
         }
 
         @media (max-width: 768px) {

@@ -151,7 +151,7 @@ require_once __DIR__ . '/../src/config.php';
         }
 
         .btn-primary:hover {
-            background: #3182ce;
+            background: #5C3B1E;
         }
 
         .btn-danger {
