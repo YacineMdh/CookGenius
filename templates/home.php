@@ -53,7 +53,7 @@
     .recipe a {
         display: block;
         text-align: center;
-        background-color: #007bff;
+        background-color: #A67C52;
         color: white;
         padding: 0.5rem;
         border-radius: 4px;
@@ -61,6 +61,6 @@
     }
 
     .recipe a:hover {
-        background-color: #0056b3;
+        background-color: #5C3B1E;
     }
 </style>
