@@ -1,24 +1,28 @@
+<?php
+require_once __DIR__ . '/../src/config.php';
+?>
+
 <div class="search-container">
-    <h1>Rechercher une recette</h1>
+    <h1><?= $lang['search']; ?></h1>
 
     <form action="?page=recherche" method="POST" class="search-form">
         <div class="form-group">
-            <label for="ingredients">Ingrédients disponibles</label>
+            <label for="ingredients"> <?= $lang['available_ingredients']; ?> </label>
             <input type="text"
                    name="ingredients"
                    id="ingredients"
-                   placeholder="ex : œufs, farine, sucre"
+                   placeholder="<?= $lang['ingredients_placeholder']; ?>"
                    required>
-            <small>Séparez les ingrédients par des virgules</small>
+            <small><?= $lang['separate_ingredients']; ?></small>
         </div>
 
         <div class="form-group">
-            <label for="exclude">Ingrédients à exclure</label>
+            <label for="exclude"> <?= $lang['exclude_ingredients']; ?> </label>
             <input type="text"
                    name="exclude"
                    id="exclude"
-                   placeholder="ex : noix, lait">
-            <small>Séparez les ingrédients par des virgules</small>
+                   placeholder="<?= $lang['exclude_placeholder']; ?>">
+            <small><?= $lang['separate_ingredients']; ?></small>
         </div>
 
         <button type="submit">
@@ -26,13 +30,13 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            Rechercher
+            <?= $lang['search']; ?>
         </button>
     </form>
 
     <?php if (isset($recettes)): ?>
         <div class="results-section">
-            <h2>Recettes trouvées</h2>
+            <h2><?= $lang['found_recipes']; ?></h2>
             <div class="recipes-grid">
                 <?php foreach ($recettes as $recette): ?>
                     <article class="recipe-card">
@@ -43,7 +47,7 @@
                         <div class="recipe-content">
                             <h3><?= htmlspecialchars($recette['title']) ?></h3>
                             <a href="/recette/detail/<?= $recette['id'] ?>" class="view-recipe">
-                                Voir la recette
+                                <?= $lang['view_recipe']; ?>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>

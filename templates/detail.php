@@ -2,18 +2,15 @@
 use App\Service\RatingService;
 use App\Service\FavoriteService;
 
-// Initialisation des services
 $ratingService = new RatingService();
 $favoriteService = new FavoriteService();
 
-// Récupération des données
 $recipe_id = $recetteDetails['id'] ?? 0;
 $ratings = $ratingService->getRecipeRatings($recipe_id);
 $stats = $ratingService->getAverageRating($recipe_id);
 
 $isFavorite = isset($_SESSION['user_id']) ? $favoriteService->isFavorite($_SESSION['user_id'], $recipe_id) : false;
 
-// Initialisation des statistiques
 $ratingStats = [
     'average' => $stats['average'] ?? 0,
     'total' => $stats['total'] ?? 0,
@@ -477,4 +474,3 @@ $ratingStats = [
 </div>
 </body>
 </html>
-

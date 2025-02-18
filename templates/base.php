@@ -294,7 +294,7 @@ require_once __DIR__ . '/../src/config.php';
 </div>
 
 <footer>
-    <p>&copy; 2025 <?= $lang['title']; ?>. All rights reserved.</p>
+    <p> <?= $lang['title']; ?> </p>
 </footer>
 </body>
 </html>

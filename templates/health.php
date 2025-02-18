@@ -1,43 +1,46 @@
+<?php
+require_once __DIR__ . '/../src/config.php';
+?>
+
 <div class="health-container">
-    <h1>Plan Alimentaire Santé</h1>
+    <h1><?= $lang['health']; ?></h1>
 
     <form action="?page=health" method="POST" class="health-form">
         <div class="form-group">
-            <label for="calories">Nombre de calories souhaité</label>
-            <input type="number" name="calories" id="calories" placeholder="ex : 2000" required>
+            <label for="calories"> <?= $lang['calories']; ?> </label>
+            <input type="number" name="calories" id="calories" placeholder="<?= $lang['calories_placeholder']; ?>" required>
         </div>
 
         <div class="form-group">
-            <label for="meals">Nombre de plats</label>
-            <input type="number" name="meals" id="meals" placeholder="ex : 3" required>
+            <label for="meals"> <?= $lang['meals']; ?> </label>
+            <input type="number" name="meals" id="meals" placeholder="<?= $lang['meals_placeholder']; ?>" required>
         </div>
 
-        <button type="submit">Générer le plan</button>
+        <button type="submit"> <?= $lang['generate_plan']; ?> </button>
     </form>
 
     <?php if (isset($suggestions) &&  isset($calories)): ?>
         <div class="results-section">
-            <h2>Suggestions de Plats</h2>
+            <h2><?= $lang['meal_suggestions']; ?></h2>
 
-            <p><strong>Total Calories :</strong> <?= htmlspecialchars($calories) ?> kcal</p>
+            <p><strong><?= $lang['total_calories']; ?> :</strong> <?= htmlspecialchars($calories) ?> kcal</p>
             <div class="meals-grid">
                 <?php foreach ($suggestions as $meal): ?>
-             
                     <article class="meal-card">
                         <div class="meal-content">
                             <h3><?= htmlspecialchars($meal['title']) ?></h3>
-                                        <div class="recipe-image">
+                            <div class="recipe-image">
                                 <img src="<?= htmlspecialchars($meal['image']) ?>"
                                     alt="<?= htmlspecialchars($meal['title']) ?>">
                             </div>
-                            <p><strong>Calories :</strong> <?= isset($meal['nutrition']["nutrients"][0]["amount"]) ? htmlspecialchars($meal['nutrition']["nutrients"][0]["amount"]) : 'N/A' ?></p>
+                            <p><strong><?= $lang['calories']; ?> :</strong> <?= isset($meal['nutrition']["nutrients"][0]["amount"]) ? htmlspecialchars($meal['nutrition']["nutrients"][0]["amount"]) : 'N/A' ?></p>
                         </div>
                         <a href="/recette/detail/<?= $meal['id'] ?>" class="view-recipe">
-                                Voir la recette
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </a>
+                            <?= $lang['view_recipe']; ?>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
                     </article>
                 <?php endforeach; ?>
             </div>
@@ -213,6 +216,8 @@
         overflow: hidden;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         transition: transform 0.2s;
+        justify-content: space-between;
+        height: 100%;
     }
 
     .recipe-card:hover {
@@ -231,7 +236,9 @@
     }
 
     .recipe-content {
-        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     .recipe-content h3 {
@@ -241,6 +248,7 @@
     }
 
     .view-recipe {
+        margin-top: auto; 
         display: flex;
         align-items: center;
         gap: 0.5rem;
