@@ -179,7 +179,7 @@ require_once __DIR__ . '/../src/config.php';
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        background: #4299e1;
+        background: #2F855A;
         color: white;
         padding: 0.75rem 1.5rem;
         border: none;
@@ -191,7 +191,7 @@ require_once __DIR__ . '/../src/config.php';
     }
 
     button:hover {
-        background: #3182ce;
+        background: #276749;
     }
 
     .results-section {
