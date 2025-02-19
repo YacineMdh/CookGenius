@@ -79,16 +79,18 @@ $ratingStats = [
         }
 
         .recipe-image {
-            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 400px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
         }
 
         .recipe-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+            width: auto;
+            max-height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .recipe-meta {

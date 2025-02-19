@@ -1,3 +1,129 @@
+<style>
+    .health-container {
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #5C3B1E;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .health-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        font-weight: 700;
+        color: #5C3B1E;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: #fff5e1;
+        color: #5C3B1E;
+        font-weight: bold;
+    }
+
+    button {
+        background: #2F855A;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #276749;
+    }
+
+    .results-section {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .results-section h2 {
+        text-align: center;
+        color: #5C3B1E;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .results-section p {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        color: #2d3748;
+    }
+
+    .meals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .meal-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .meal-content h3 {
+        margin: 0 0 0.5rem 0;
+        color: #5C3B1E;
+        font-size: 1.2rem;
+    }
+
+    .recipe-image img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .view-recipe {
+        margin-top: auto;
+        display: block;
+        text-align: center;
+        background-color: #A67C52;
+        color: white;
+        padding: 0.75rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .view-recipe:hover {
+        background-color: #5C3B1E;
+    }
+</style>
+
 <?php
 require_once __DIR__ . '/../src/config.php';
 ?>
@@ -19,7 +145,7 @@ require_once __DIR__ . '/../src/config.php';
         <button type="submit"> <?= $lang['generate_plan']; ?> </button>
     </form>
 
-    <?php if (isset($suggestions) &&  isset($calories)): ?>
+    <?php if (isset($suggestions) && isset($calories)): ?>
         <div class="results-section">
             <h2><?= $lang['meal_suggestions']; ?></h2>
 
@@ -37,9 +163,6 @@ require_once __DIR__ . '/../src/config.php';
                         </div>
                         <a href="/recette/detail/<?= $meal['id'] ?>" class="view-recipe">
                             <?= $lang['view_recipe']; ?>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
                         </a>
                     </article>
                 <?php endforeach; ?>
@@ -47,233 +170,3 @@ require_once __DIR__ . '/../src/config.php';
         </div>
     <?php endif; ?>
 </div>
-
-<style>
-    .health-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-        color: #2d3748;
-        text-align: center;
-    }
-
-    .health-form {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: 2rem;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    label {
-        display: block;
-        font-weight: 600;
-        color: #4a5568;
-        margin-bottom: 0.5rem;
-    }
-
-    input[type="number"] {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 2px solid #e2e8f0;
-        border-radius: 8px;
-        font-size: 1rem;
-    }
-
-    button {
-        background: #38a169;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-    }
-
-    .results-section {
-        margin-top: 2rem;
-    }
-
-    .meals-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .meal-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-
-    .meal-content h3 {
-        margin: 0 0 0.5rem 0;
-        color: #2d3748;
-    }
-
-    <style>
-    .search-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-        color: #2d3748;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .search-form {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: 3rem;
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    label {
-        display: block;
-        font-weight: 600;
-        color: #4a5568;
-        margin-bottom: 0.5rem;
-    }
-
-    small {
-        display: block;
-        color: #718096;
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 2px solid #e2e8f0;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: border-color 0.2s;
-    }
-
-    input[type="text"]:focus {
-        outline: none;
-        border-color: #4299e1;
-    }
-
-    button {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: #2F855A;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    button:hover {
-        background: #276749;
-    }
-
-    .results-section {
-        margin-top: 3rem;
-    }
-
-    .results-section h2 {
-        color: #2d3748;
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-
-    .recipes-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-
-    .recipe-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s;
-        justify-content: space-between;
-        height: 100%;
-    }
-
-    .recipe-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .recipe-image {
-        aspect-ratio: 16/9;
-        overflow: hidden;
-    }
-
-    .recipe-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .recipe-content {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-
-    .recipe-content h3 {
-        color: #2d3748;
-        margin: 0 0 1rem 0;
-        font-size: 1.25rem;
-    }
-
-    .view-recipe {
-        margin-top: auto; 
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #4299e1;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .view-recipe:hover {
-        color: #3182ce;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .search-container {
-            padding: 1rem;
-        }
-
-        .recipes-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .search-form {
-            padding: 1.5rem;
-        }
-    }
-
-</style>
