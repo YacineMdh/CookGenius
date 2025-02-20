@@ -18,18 +18,22 @@ class Router
 
     public function match(string $path)
     {
+        //error_log("routes: " . print_r($this->routes, true));
         foreach ($this->routes as $route) {
             $routePath = $route->getPath(); // Get the route path, e.g., "/recette/detail/{id}"
             
             // Check if route contains placeholders (like {id})
             if (strpos($routePath, '{') !== false) {
+                error_log("routePath: " . print_r($routePath, true));
                 // Convert placeholders like "{id}" to a regex pattern that matches numbers
-                $pattern = preg_replace('/\{(\w+)\}/', '(\d+)', $routePath);
+                // Convert placeholders like "{id}" or "{token}" to a regex pattern that matches alphanumeric characters
+                $pattern = preg_replace('/\{(\w+)\}/', '([a-zA-Z0-9]+)', $routePath);
                 $pattern = "#^" . $pattern . "$#"; // Ensure full match
     
                 if (preg_match($pattern, $path, $matches)) {
                     array_shift($matches); // Remove the full match from $matches
                     $route->params = $matches; // Store extracted parametersgi
+                    error_log("params: " . print_r($route->params, true));
                     return $route; // Return the matched route
                 }
             } else {

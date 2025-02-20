@@ -62,6 +62,8 @@ class AuthController {
     public function forgotPassword(): void {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $token = $this->authService->requestPasswordReset($_POST['email']);
+            //log the token
+
             $emailService = new EmailService();
             $emailService->sendResetPasswordEmail($_POST['email'], $token);
 
@@ -77,4 +79,17 @@ class AuthController {
         header('Location: /login');
         exit;
     }
+
+    public function resetPassword(string $token): void {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->authService->resetPassword($token, $_POST['password']);
+            error_log("Debug: " . print_r( $_POST['password'] , true));
+            header('Location: /login');
+            exit;
+        }
+
+        $this->viewManager->render('auth/reset', ['token' => $token]);
+    }
+
+
 }

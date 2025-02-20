@@ -21,7 +21,7 @@ class AuthenticationService {
         $user = new User($email, $password);
 
         $stmt = $this->pdo->prepare(
-            "INSERT INTO users (email, password, confirmation_token, is_confirmed) 
+            "INSERT INTO users (x, password, confirmation_token, is_confirmed) 
          VALUES (:email, :password, :token, false)"
         );
 
@@ -56,15 +56,33 @@ class AuthenticationService {
         return $stmt->execute(['token' => $token]);
     }
 
-    public function requestPasswordReset(string $email): bool {
+    public function requestPasswordReset(string $email): ?string {
         $token = bin2hex(random_bytes(32));
+        error_log("token: " . print_r($token, true));
         $stmt = $this->pdo->prepare(
-            "UPDATE users SET reset_token = :token 
-             WHERE email = :email"
+            "UPDATE users SET reset_token = :token WHERE email = :email"
         );
-        return $stmt->execute([
+
+        if ($stmt->execute([
             'token' => $token,
             'email' => $email
+        ])) {
+            return $token; // Retourne le token généré si l'update réussit
+        }
+
+        return null; // Retourne null en cas d'échec
+    }
+
+    public function resetPassword(string $token, mixed $password)
+    {
+        $new_pass = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $this->pdo->prepare(
+            "UPDATE users SET password = :password WHERE reset_token = :token"
+        );
+
+        return $stmt->execute([
+            'password' => $new_pass,
+            'token' => $token
         ]);
     }
 }

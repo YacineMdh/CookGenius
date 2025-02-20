@@ -7,6 +7,10 @@ main_home:
 
 # routes.yaml
 
+change_password:
+  path: /reset-password/{id}
+  controller: App\Controller\AuthController::resetPassword
+
 recherche:
   path: /recette/recherche
   controller: App\Controller\RecetteController::rechercheRecette

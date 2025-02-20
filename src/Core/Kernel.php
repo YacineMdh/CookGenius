@@ -25,7 +25,8 @@ class Kernel
 
         $router = new Router();
         $route = $router->match($path);
-        error_log("route: " . print_r($path, true));
+
+        error_log("route: " . print_r($route, true));
         
         $controllerFragments = explode('::', $route->getController());
         $controllerClass = $controllerFragments[0];

@@ -10,6 +10,7 @@ class AuthenticationMiddleware
         '/forgot-password',
         '/confirm',
         '/about',
+        '/reset-password/',
     ];
 
     public function __construct()
@@ -25,13 +26,13 @@ class AuthenticationMiddleware
         $path = $_SERVER['PATH_INFO'] ?? '/';
         //error_log("path: " . print_r($path, true));
         // Allow access to public routes
-        if (in_array($path, self::PUBLIC_ROUTES) || str_starts_with($path, '/confirm/')) {
+        if (in_array($path, self::PUBLIC_ROUTES) || str_starts_with($path, '/reset-password/')) {
             return true;
         }
 
         // Check if user is authenticated
         if (!isset($_SESSION['user_id'])) {
-            //
+            error_log("vous n'êtes pas connecté");
             error_log("user_id: " . print_r($_SESSION['user_id'], true));
             header('Location: /login');
             exit;
